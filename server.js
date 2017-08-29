@@ -8,7 +8,7 @@ var listingData, server;
 
 var requestHandler = function(request, response) {
   var parsedUrl = url.parse(request.url);
-
+  /* I WILL ADD CODE HERE */
   /*
     Your request handler should send listingData in the JSON format if a GET request 
     is sent to the '/listings' path. Otherwise, it should send a 404 error. 
