@@ -18,7 +18,7 @@
 
               -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchResult">
           </div>
           <div class="tableWrapper">
             <table class="table table-striped table-hover">
@@ -33,7 +33,16 @@
                       * populate the rows with the code and name of each listing
                       * include a way to remove individual listings
 
-                --> 
+                -->
+              <tr ng-repeat="entry in listings | filter:searchResult" ng-click="showDetails($index)">
+                <td>{{entry.code}}</td>
+                <td>{{entry.name}}</td>
+                <td>
+                  <button class="btn btn-danger pull-right" type="button" ng-click="deleteListing($index)">
+                    <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
+                  </button>
+                </td>
+              </tr> 
             </table>
           </div>
           <!-- 
@@ -41,6 +50,21 @@
               Write an HTML form that adds new listings to the directory 
 
             -->
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="code of new listing" ng-model="newCode">
+            <input type="text" class="form-control" placeholder="name of new listing" ng-model="newName">
+            <input type="text" class="form-control" placeholder="latitude of new listing" ng-model="newLat">
+            <input type="text" class="form-control" placeholder="longitude of new listing" ng-model="newLong">
+            <input type="text" class="form-control" placeholder="address of new listing" ng-model="newAddress">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="addListing()">
+                Add
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
@@ -51,6 +75,11 @@
                    * consider how to use ng-click within the the table to implement this feature
 
              -->
+
+             <p> Code: {{detailedInfo.code}} </p>
+             <p> Name: {{detailedInfo.name}} </p>
+             <p> Coordinates: {{detailedInfo.coordinates}} </p>
+             <p> Address: {{detailedInfo.address}} </p>
           </div>
         </div>
       </div>
